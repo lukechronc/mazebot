@@ -1,0 +1,26 @@
+import maze
+
+c = maze.Connect('lukechronc', 'pralinka')
+
+all = c.get_all()
+#print(all[0])
+x = c.x()
+y = c.y()
+
+
+
+was = []
+while(1 == 1):
+	pozr = all[x + 1][y]
+	pozd = all[x][y - 1]
+	if pozr == 0:
+		print('MOVE d')
+		c.move('d')
+		was.append(x + (y * c.width))
+		
+		x = x + 1
+		print(was)
+	else:
+		print('stop')
+		break	
+c.wait();
