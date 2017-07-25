@@ -6,26 +6,65 @@ all = c.get_all()
 #print(all[0])
 x = c.x()
 y = c.y()
+d = {'d': 'a', 's': 'w', 'a': 'd', 'w': 's'}
 
 
 
 was = []
-while(1 == 1):
+smer = []
+
+while all[x][y] != 3:
 	pozr = all[x + 1][y]
-	pozd = all[x][y - 1]
-	if pozr == 0:
+	pozd = all[x][y + 1]
+	pozl = all[x - 1][y]
+	pozu = all[x][y - 1]
+	if pozr != 2:
 		print('MOVE d')
-		c.move('d')
-		was.append(x + (y * c.width))
+		if not c.move('d'):
+			print('NOPE')
+		was.append(x) 
+		was.append(y)
 		x = x + 1
-		print(was)
-	elif pozd == 0:
+		all[x][y] = 2
+		smer.append('d')
+		#print(was)
+	elif pozd != 2:
 		print('MOVE s')
-		c.move('s')
-		was.append(x +(y * c.width))
-		y = y - 1	
-		print(was)
+		if not c.move('s'):
+			print('NOPE')
+		was.append(x)
+		was.append(y)
+		y = y + 1
+		all[x][y] = 2
+		smer.append('s')	
+		#print(was)
+	elif pozl != 2:
+		print('MOVE a')
+		if not c.move('a'):
+			print('NOPE')
+		was.append(x)
+		was.append(y)
+		x = x - 1
+		all[x][y] = 2
+		smer.append('a')		
+		#print(was)
+	elif pozu != 2:
+		print('MOVE w')
+		if not c.move('w'):
+			print('NOPE')
+		was.append(x)
+		was.append(y)
+		y = y - 1
+		all[x][y] = 2
+		smer.append('w')
+		#print(was)
 	else:
-		print('stop')
-		break	
-c.wait();
+		#print(smer)
+		mov = smer.pop()
+		hyb = d[mov]
+		c.move(hyb)
+		y = was.pop()
+		x = was.pop()
+		#print(hyb)
+			
+c.wait()
