@@ -1,6 +1,7 @@
+"""Ting by Lukas Chronc ----- Pro nekomercni pouziti ----"""
 import maze
-
-c = maze.Connect('lukechronc', 'pralinka')
+code = 'husoprase'
+c = maze.Connect('lukechronc', code)
 
 all = c.get_all()
 #print(all[0])
